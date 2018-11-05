@@ -40,7 +40,7 @@ public class FinalEditionTest {
 			executor.execute(getHandlerInstance());
 			executor.execute(getHandlerInstance());
 			executor.execute(getHandlerInstance());
-			Thread.sleep(120000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
