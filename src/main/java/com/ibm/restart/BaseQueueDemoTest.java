@@ -24,7 +24,7 @@ public class BaseQueueDemoTest {
 	int submitTime = 10;
 	Dispatcher dispatcher = Dispatcher.getInstance();
 
-	@Test
+
 	public void SubmitterAndHandleThread() {
 		ExecutorService executor = getThreadPoolExecutor();
 		try {

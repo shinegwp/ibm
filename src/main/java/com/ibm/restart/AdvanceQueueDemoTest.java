@@ -32,7 +32,7 @@ public class AdvanceQueueDemoTest {
 	int keepAliveTime = 10;
 	AdDispatcher dispatcher = AdDispatcher.getInstance();
 
-	@Test
+	
 	public void SubmitterAndHandleThread() {
 		ExecutorService executor = getThreadPoolExecutor();
 		try {

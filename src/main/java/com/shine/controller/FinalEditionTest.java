@@ -28,7 +28,7 @@ public class FinalEditionTest {
 	static int keepAliveTime;
 	static String executeTime;
 
-	@Test
+	
 	public void SubmitterAndHandleThread() {
 		ExecutorService executor = getThreadPoolExecutor();
 		try {
