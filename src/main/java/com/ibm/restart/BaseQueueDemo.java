@@ -18,7 +18,7 @@ import org.junit.Test;
  * @version 创建时间：2018年10月26日 上午9:28:11
  * @describe
  */
-public class BaseQueueDemoTest {
+public class BaseQueueDemo {
 	int corePoolSize = 10;
 	int executorTime = 10;
 	int submitTime = 10;

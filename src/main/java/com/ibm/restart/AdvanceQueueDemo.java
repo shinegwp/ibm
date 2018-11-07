@@ -26,7 +26,7 @@ import org.junit.Test;
  * @version 创建时间：2018年10月26日 下午2:40:35
  * @describe
  */
-public class AdvanceQueueDemoTest {
+public class AdvanceQueueDemo {
 	int corePoolSize = 10;
 	int maxPoolSize = 10;
 	int keepAliveTime = 10;

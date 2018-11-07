@@ -21,7 +21,7 @@ import com.shine.utils.OperateEnum;
  * @version 创建时间：2018年10月29日 下午3:04:07
  * @describe
  */
-public class FinalEditionTest {
+public class FinalEdition {
 
 	static int corePoolSize;
 	static int maxPoolSize;
@@ -100,13 +100,13 @@ public class FinalEditionTest {
 	
 		try {
 			properties = new Properties();
-			is = FinalEditionTest.class.getClassLoader().getResourceAsStream("configuration/ThreadPool.properties");
+			is = FinalEdition.class.getClassLoader().getResourceAsStream("configuration/ThreadPool.properties");
 			properties.load(is);
 			corePoolSize = Integer.valueOf(properties.getProperty("corePoolSize"));
 			maxPoolSize = Integer.valueOf(properties.getProperty("maxPoolSize"));
 			keepAliveTime = Integer.valueOf(properties.getProperty("keepAliveTime"));
 			executeTime = properties.getProperty("executeTime");
-			is = FinalEditionTest.class.getClassLoader().getResourceAsStream("configuration/FilePath.properties");
+			is = FinalEdition.class.getClassLoader().getResourceAsStream("configuration/FilePath.properties");
 			properties.load(is);
 			copyFilePath = properties.getProperty("copyFilePath");
 			copyTargetPath = properties.getProperty("copyTargetPath");
