@@ -10,7 +10,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
 
 /**
  * @author 高伟鹏
