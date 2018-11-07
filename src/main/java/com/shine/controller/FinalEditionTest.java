@@ -2,6 +2,8 @@ package com.shine.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -44,17 +46,17 @@ public class FinalEditionTest {
 		}
 	}
 
-	public Runnable getHandlerInstance() {
+	private Runnable getHandlerInstance() {
 		return new Handler();
 	}
 
-	public MyFile getMyFileInstance(OperateEnum operate) {
+	private MyFile getMyFileInstance(OperateEnum operate) {
 		MyFile myFile = new MyFile(operate, getDate(), getPriority());
         System.out.println(myFile.operate+"的执行时间是:"+myFile.executeTime+",优先级为:"+myFile.getPriority());
 		return myFile;
 	}
 
-	public ThreadPoolExecutor getThreadPoolExecutor() {
+	private ThreadPoolExecutor getThreadPoolExecutor() {
 		return new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime, TimeUnit.DAYS,
 				new ArrayBlockingQueue<Runnable>(corePoolSize >> 1));
 	}
@@ -68,12 +70,21 @@ public class FinalEditionTest {
 	// return operate;
 	// }
 
-	public String getDate() {
+	private String getDate() {
 		String executorTimeTemp = executeTime /*+ ((int) (Math.random() * 50) + 10)*/;
+		try {
+			long flag = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(executorTimeTemp).getTime() - System.currentTimeMillis();
+			if (flag < 0) {
+				throw new IllegalArgumentException("输入时间不合法，早于当前时间");
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return executorTimeTemp;
 	}
 
-	public int getPriority() {
+	private int getPriority() {
 		return (int) (Math.random() * 10 + 1);
 	}
 
@@ -115,7 +126,7 @@ public class FinalEditionTest {
 		}
 	}
 
-	public  Runnable getSubmitterInstance(OperateEnum operate) {
+	private  Runnable getSubmitterInstance(OperateEnum operate) {
 		switch (operate) {
 		case COPY:
 			OperateEnum.COPY.setFilePath(copyFilePath);

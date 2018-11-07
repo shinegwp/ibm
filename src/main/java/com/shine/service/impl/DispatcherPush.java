@@ -27,7 +27,6 @@ public class DispatcherPush implements Runnable{
 			Lock lock = new ReentrantLock();
 			lock.lock();
 			queue.put(myFile);
-			System.out.println("添加数据后" + queue.toString());
 			lock.unlock();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

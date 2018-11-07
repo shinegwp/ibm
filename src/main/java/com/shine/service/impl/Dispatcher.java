@@ -48,6 +48,7 @@ public class Dispatcher implements DispatcherBaseOperate {
 			MyFile resultTemp = futureTemp.get();
 			Callable<MyFile> dtp = new DispatcherTakePriority(resultTemp);
 			lock.unlock();
+			System.out.println("获取数据后剩余数据"+queue.toString());
 			System.out.println("我将在" + resultTemp.executeTime + "执行该任务" + resultTemp.operate);
 			lock.lock();
 			Future<MyFile> future = executor.schedule(dtp, getDelay(resultTemp.executeTime), TimeUnit.MILLISECONDS);
@@ -62,7 +63,7 @@ public class Dispatcher implements DispatcherBaseOperate {
 		}
 	}
 
-	public long getDelay(String date) {
+	private long getDelay(String date) {
 		try {
 			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date).getTime() - System.currentTimeMillis();
 		} catch (ParseException e) {

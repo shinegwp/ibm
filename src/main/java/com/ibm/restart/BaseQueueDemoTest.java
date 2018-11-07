@@ -1,5 +1,6 @@
 package com.ibm.restart;
 
+import java.util.Iterator;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
@@ -23,17 +24,17 @@ public class BaseQueueDemoTest {
 	int submitTime = 10;
 	Dispatcher dispatcher = Dispatcher.getInstance();
 
-	
+	@Test
 	public void SubmitterAndHandleThread() {
 		ExecutorService executor = getThreadPoolExecutor();
 		try {
-			executor.execute(new Submitter(dispatcher,getString()));
-			executor.execute(new Submitter(dispatcher,getString()));
-			executor.execute(new Submitter(dispatcher,getString()));
+			executor.execute(new Submitter(dispatcher,"A"));
+			executor.execute(new Submitter(dispatcher,"B"));
+			executor.execute(new Submitter(dispatcher,"C"));
 			Thread.sleep(200);
-			executor.execute(new Handler(dispatcher));
-			executor.execute(new Handler(dispatcher));
-			executor.execute(new Handler(dispatcher));
+			executor.execute(new HandlerA(dispatcher,"A"));
+			executor.execute(new HandlerB(dispatcher,"B"));
+			executor.execute(new HandlerC(dispatcher,"C"));
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -74,40 +75,63 @@ class Submitter implements Runnable {
 	
 }
 
-class Handler implements Runnable {
+class HandlerA implements Runnable {
 	private BaseOperate dispatcher;
+	private String str;
 
-	public Handler(BaseOperate dispatcher) {
+	public HandlerA(BaseOperate dispatcher,String str) {
 		this.dispatcher = dispatcher;
+		this.str = str;
 	}
 
 	@Override
 	public void run() {
-		String flag = dispatcher.take();
-		System.out.println("这是我获取的数据" + flag);
-		switch (flag) {
-		case "A":
-			System.out.println("我会发送到处理A的handle");
-			break;
-		case "B":
-			System.out.println("我会发送到处理B的handle");
-			break;
-		case "C":
-			System.out.println("我会发送到处理C的handle");
-			break;
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		String strresult = dispatcher.take(str);
+		System.out.println("我是AHandler，这是我获取处理的数据"+strresult);
+        
+        
+	}
+}
+
+class HandlerB implements Runnable {
+	private BaseOperate dispatcher;
+	private String str;
+
+	public HandlerB(BaseOperate dispatcher,String str) {
+		this.dispatcher = dispatcher;
+		this.str = str;
+	}
+
+	@Override
+	public void run() {
+		String strresult = dispatcher.take(str);
+		System.out.println("我是BHandler，这是我获取处理的数据"+strresult);
+        
+        
+	}
+}
+class HandlerC implements Runnable {
+	private BaseOperate dispatcher;
+	private String str;
+
+	public HandlerC(BaseOperate dispatcher,String str) {
+		this.dispatcher = dispatcher;
+		this.str = str;
+	}
+
+	@Override
+	public void run() {
+		String strresult = dispatcher.take(str);
+		System.out.println("我是CHandler，这是我获取处理的数据"+strresult);
+        
+        
 	}
 }
 
 interface BaseOperate {
 	public void push(String str);
 
-	public String take();
+	public String take(String str);
 }
 
 class Dispatcher implements BaseOperate {
@@ -137,8 +161,8 @@ class Dispatcher implements BaseOperate {
 		
 	}
 
-	public synchronized String take() {
-		DispatcherTake dt = new DispatcherTake(queue);
+	public synchronized String take(String str) {
+		DispatcherTake dt = new DispatcherTake(queue,str);
 		Future<String> future = executor.submit(dt);
 		try {
 			String result = future.get();
@@ -173,16 +197,28 @@ class DispatcherPush implements Runnable {
 		}
 	}
 }
-
 class DispatcherTake implements Callable<String> {
-	private BlockingQueue<String> queue;
+	private BlockingQueue<String> queue = null;
+	private String str = null;
 
-	public DispatcherTake(BlockingQueue<String> queue) {
+	public DispatcherTake(BlockingQueue<String> queue, String str) {
 		this.queue = queue;
+		this.str = str;
 	}
 
 	@Override
 	public String call() throws Exception {
-		return queue.take();
+		synchronized(queue){
+			Iterator<String> it = queue.iterator();
+			String temp = null;
+			while (it.hasNext()) {
+				temp = it.next();
+				if (temp.equals(str)) {
+					queue.remove(temp);
+					return temp;
+				}
+			}
+		}
+		return null;
 	}
 }

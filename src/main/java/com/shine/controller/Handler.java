@@ -54,7 +54,7 @@ public class Handler implements Runnable {
 		}
 	}
 
-	public void copy(MyFile myFile) {
+	private void copy(MyFile myFile) {
 		RandomAccessFile raf1 = null;
 		RandomAccessFile raf2 = null;
 		FileChannel channel2 = null;
@@ -107,7 +107,7 @@ public class Handler implements Runnable {
 		}
 	}
 
-	public  void delete(MyFile myFile) {
+	private  void delete(MyFile myFile) {
 		System.out.println(myFile.operate.toString());
 		File file = new File(myFile.operate.getFilePath());
 		// 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
@@ -122,7 +122,7 @@ public class Handler implements Runnable {
 		}
 	}
 
-	public void cut(MyFile myFile) {
+	private void cut(MyFile myFile) {
 		FileOutputStream outputStream = null;
 		InputStream inputStream = null;
 		byte[] bytes = new byte[1024];

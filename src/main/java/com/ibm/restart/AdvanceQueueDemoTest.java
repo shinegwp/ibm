@@ -32,7 +32,7 @@ public class AdvanceQueueDemoTest {
 	int keepAliveTime = 10;
 	AdDispatcher dispatcher = AdDispatcher.getInstance();
 
-	
+	@Test
 	public void SubmitterAndHandleThread() {
 		ExecutorService executor = getThreadPoolExecutor();
 		try {
@@ -43,7 +43,7 @@ public class AdvanceQueueDemoTest {
 			executor.execute(new AdHandlerCut(dispatcher));
 			executor.execute(new AdHandlerPaste(dispatcher));
 			executor.execute(new AdHandlerDelete(dispatcher));
-			Thread.sleep(700000);
+			Thread.sleep(120000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +57,15 @@ public class AdvanceQueueDemoTest {
 
 	public MyFile getMyFileInstance(String str) {
 		String date = getDate();
+		try {
+			long flag = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date).getTime() - System.currentTimeMillis();
+			if (flag < 0) {
+				throw new IllegalArgumentException("传入参数不合法，早于当前时间");
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		MyFile myFile = new MyFile(str,date);
         System.out.println(str+"操作的执行时间时："+date);
 		return myFile;
@@ -75,7 +84,7 @@ public class AdvanceQueueDemoTest {
 	}*/
 
 	public String getDate() {
-		String executorTimeTemp = "2018-11-02 10:48:" + ((int) (Math.random() * 50) + 10);
+		String executorTimeTemp = "2018-11-06 15:45:" + ((int) (Math.random() * 50) + 10);
 		return executorTimeTemp;
 	}
 }
@@ -147,7 +156,7 @@ class AdHandlerCut implements Runnable {
 	public void run() {
 		MyFile flag = adDispatcher.take("cut");
         if (flag != null) {
-        	System.out.println("我在执行cut操作"+flag.toString());
+        	System.out.println("我是CutHandler,我在执行cut操作"+flag.toString());
         } else {
         	System.out.println("没有获取到数据");
         }
@@ -166,7 +175,7 @@ class AdHandlerPaste implements Runnable {
 	public void run() {
 		MyFile flag = adDispatcher.take("paste");
         if (flag != null) {
-        	System.out.println("我在执行paste操作"+flag.toString());
+        	System.out.println("我是PasteHandler,我在执行paste操作"+flag.toString());
         } else {
         	System.out.println("没有获取到数据");
         }
@@ -185,7 +194,7 @@ class AdHandlerDelete implements Runnable {
 	public void run() {
 		MyFile flag = adDispatcher.take("delete");
         if (flag != null) {
-        	System.out.println("我在执行delete操作"+flag.toString());
+        	System.out.println("我是DeleteHandler,我在执行delete操作"+flag.toString());
         } else {
         	System.out.println("没有获取到数据");
         }
@@ -249,7 +258,6 @@ class AdDispatcher implements AdBaseOperate {
 	public long getDelay(String date) {
 		try {
 			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date).getTime() - System.currentTimeMillis();
-
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
