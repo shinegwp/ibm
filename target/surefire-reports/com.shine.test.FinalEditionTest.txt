@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.shine.test.FinalEditionTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.408 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.404 sec

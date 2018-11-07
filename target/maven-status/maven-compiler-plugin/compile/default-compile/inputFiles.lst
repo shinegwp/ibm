@@ -4,9 +4,6 @@
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/finall/DispatcherTwo.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/utils/BeanFactory.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/base/Dispatcher.java
-/Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/controller/FinalEditionTest.java
-/Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/restart/BaseQueueDemoTest.java
-/Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/restart/AdvanceQueueDemoTest.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/finall/FinalEdition.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/temp/ThreadPoolTes.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/temp2/Main.java
@@ -20,6 +17,7 @@
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/advanced/AdvancedEdition.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/po/MyFile.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/temp/ThreadPollUtils.java
+/Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/restart/BaseQueueDemo.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/temp/ThreadPool.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/base/Submitter.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/finall/Handler.java
@@ -30,6 +28,8 @@
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/service/impl/DispatcherTakePriority.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/controller/Handler.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/utils/PriorityCompare.java
+/Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/restart/AdvanceQueueDemo.java
+/Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/controller/FinalEdition.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/shine/utils/OperateEnum.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/temp/Pooled.java
 /Users/sunshine/ibm/eclipse/jee-2018-09-workspace/ibm/src/main/java/com/ibm/base/Handler.java
